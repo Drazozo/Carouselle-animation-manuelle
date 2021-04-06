@@ -1,0 +1,194 @@
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html,
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background-color: #3c3c3c;
+}
+
+.info {
+  display: inline-block;
+  margin-bottom: 15px;
+  
+  padding: 15px;
+  
+  background-color: white;
+  
+  text-transform: uppercase;
+  
+}
+
+.card {
+  position: relative;
+  
+  width: 700px;
+  height: 400px;
+  overflow: hidden;
+
+  border-radius: 5px;
+  box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/*Light blue cover above the slide show*/
+.card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 900;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(14, 22, 115, 0.10);
+}
+
+/*
+* Create the circles to change picture
+* By using the lables
+*/
+label {
+  position: relative;
+  z-index: 1000;
+ 
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 10px 5px;
+
+  border-radius: 50%;
+  border: 2px solid white;
+
+  cursor: pointer;
+}
+
+label:after { clear: both; }
+
+.checkbox { display: none; }
+
+.checkbox:checked + label { border: none; }
+
+.checkbox:checked + label span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  
+  display: block;
+  
+  background-color: white;
+  border-radius: 50%;
+}
+
+.card_part {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+* Slice that make the animation possible
+*/
+.card_part .card_part_slice {
+  width: calc( 700px / 4 );
+  height: 400px;
+  transform: translateY( -400px );
+
+  background-image: url( https://github.com/Flat-Pixels/assets_hosting/blob/master/picture_slides/1.jpg?raw=true );
+  background-position: left top; /* Playing on background position */
+
+  transition: all .7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/*
+* Make the background image whole
+* by playing on the background-position
+*/
+.card_part .card_part_slice.slice_2{
+  background-position: -175px 0;
+  transition-delay: .1s;
+}
+
+.card_part .card_part_slice.slice_3{
+  background-position: -350px 0;
+  transition-delay: .2s;
+}
+
+.card_part .card_part_slice.slice_4{
+  background-position: -525px 0;
+  transition-delay: .3s;
+}
+
+.card_part.card_part-two .card_part_slice {
+  background-image: url( https://github.com/Flat-Pixels/assets_hosting/blob/master/picture_slides/2.jpg?raw=true );
+}
+
+.card_part.card_part-three .card_part_slice {
+  background-image: url( https://github.com/Flat-Pixels/assets_hosting/blob/master/picture_slides/3.jpg?raw=true );
+}
+
+.card_part.card_part-four .card_part_slice {
+  background-image: url( https://github.com/Flat-Pixels/assets_hosting/blob/master/picture_slides/4.jpg?raw=true );
+}
+
+/*
+* The anumation part
+*/
+.checkbox_1:checked ~
+.card_part.card_part-one{
+  z-index: 800;
+}
+
+.checkbox_2:checked ~
+.card_part.card_part-two{
+  z-index: 800;
+}
+
+.checkbox_3:checked ~
+.card_part.card_part-three{
+  z-index: 800;
+}
+
+.checkbox_4:checked ~
+.card_part.card_part-four{
+  z-index: 800;
+}
+
+.checkbox_1:checked ~
+.card_part.card_part-one .card_part_slice{
+  transform: translateY( 0 );
+}
+
+.checkbox_2:checked ~
+.card_part.card_part-two .card_part_slice{
+  transform: translateY( 0 );
+}
+
+.checkbox_3:checked ~
+.card_part.card_part-three .card_part_slice{
+  transform: translateY( 0 );
+}
+
+.checkbox_4:checked ~
+.card_part.card_part-four .card_part_slice{
+  transform: translateY( 0 );
+}
